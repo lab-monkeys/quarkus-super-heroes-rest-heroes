@@ -17,9 +17,16 @@ quarkus:
       otlp:
         traces:
           endpoint: http://localhost:4317
+  datasource:
+    db-kind: postgresql
+    username: ${DB_USER}
+    password: ${DB_PWD}
+    reactive:
+      url: postgresql://${DB_HOST}/${DB_SCHEMA}
   hibernate-orm:
     database:
-      generation: drop-and-create
+      generation: 
+        ~: update
   http:
     cors:
       ~: true
@@ -36,6 +43,8 @@ quarkus:
     info-contact-url: https://github.com/quarkusio
   swagger-ui:
     always-include: true
+  devservices:
+    enabled: false
 
 "%dev":
   quarkus:
